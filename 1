@@ -1,0 +1,70 @@
+#1
+print("Welcome to A Level Computer Science 9618!")
+
+#2
+n1= int(input("Enter the first number:  "))
+n2= int(input("Enter the second number:  "))
+
+print(n1+n2)
+print(n1-n2)
+print(n1*n2)
+print(n1/n2)
+
+#3
+n3 = int(input("Enter a number:  "))
+if n3%2 == 0:
+         print("The number is even")
+else:
+         print("The number is odd")
+
+#4
+n1= int(input("Enter the first number:  "))
+n2= int(input("Enter the second number:  "))
+n3= int(input("Enter the third number:  "))
+largest=max(n1,n2,n3)
+print (largest)
+
+#5 Palindrome CHecker
+word= str(input("Enter a word: "))
+reverse = word[::-1]
+if word == reverse:
+          print("Word is a palindrome")
+else:
+    print("word is not a palindrome")
+       
+#6 Time table
+num= int(input("Enter a number:  "))
+for i in range(10):
+    print (num*(i+1))
+
+#7 FizzBuzz
+for i in range(1, 51):  
+    if i%3 == 0 and i % 5 == 0:
+        print("FizzBuzz")
+    elif i%3 == 0:
+        print("Fizz")
+    elif i%5 == 0:
+        print("Buzz")
+    else:
+        print(i)
+
+#8 Factorial
+factorial=1
+num=int(input("Enter a number: "))
+for i in range(1,num+1):
+        factorial=factorial*i
+print(factorial)
+
+#9 Guess the number
+import random
+random=random.randint(20)+1
+found=false
+while found==false:
+    num=int(input("Guess the Number: "))
+    if num>random:
+            print(" too high")
+    elif num<random:
+            print("too low")
+    else:
+        print(" You found it!")
+    found==true
