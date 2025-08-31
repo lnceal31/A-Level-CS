@@ -1,31 +1,115 @@
 class Car:
-    
-    def __init__(self, n, e):
+    def _init_(self,n,e):            
+        self.__VehicleName = self
         self.__VehicleID = n
-        self.__Registration = ""
+        self.__Registration = ''
         self.__DateOfRegistration = None
         self.__EngineSize = e
         self.__PurchasePrice = 0.00
 
     def SetPurchasePrice(self, p):
         self.__PurchasePrice = p
+
     def SetRegistration(self, r):
         self.__Registration = r
+
     def SetDateOfRegistration(self, d):
         self.__DateOfRegistration = d
 
     def GetVehicleID(self):
-        return self.__VehicleID
+        return(self.__VehicleID)
+
     def GetRegistration(self):
-        return self.__Registration
+        return(self.__Registration)
+
     def GetDateOfRegistration(self):
-        return self.__DateOfRegistration
+        return(self.__DateOfRegistration)
+
     def GetEngineSize(self):
-        return self.__EngineSize
+        return(self.__EngineSize)
+
     def GetPurchasePrice(self):
-        return self.__PurchasePrice
+        return(self.__PurchasePrice)
+    
+    def DisplayCarDetails(self):
+        print('ID: ',self._VehicleID,'\n','Registration Number: ',self.Registration,'\n','Date Of Registration: ',self.DateOfRegistration,'\n','Engine Size: ',self.EngineSize,'\n','Purchase Price: ',self._PurchasePrice,'\n','\n')
 
-ThisCar=Car(300,400)
+Corolla = Car('C1', 20)
+Yaris = Car('Y2', 13)
+Rav4 = Car('R3', 10)
+LandCruiser = Car('L4', 9)
+Prado = Car('P5', 22)
 
-ThisCar.SetPurchasePrice(12000)
-print(ThisCar.GetVehicleID())
+Corolla.SetPurchasePrice(20001)
+Yaris.SetPurchasePrice(20020)
+Rav4.SetPurchasePrice(18002)
+LandCruiser.SetPurchasePrice(21303)
+Prado.SetPurchasePrice(16364)
+
+Corolla.SetRegistration('3201')
+Yaris.SetRegistration('8971')
+Rav4.SetRegistration('4029')
+LandCruiser.SetRegistration('1873')
+Prado.SetRegistration('8763')
+
+Corolla.SetDateOfRegistration('23/04/2007')
+Yaris.SetDateOfRegistration('12/11/2009')
+Rav4.SetDateOfRegistration('30/05/2009')
+LandCruiser.SetDateOfRegistration('06/08/2008')
+Prado.SetDateOfRegistration('27/10/2007')
+
+print("\n--------------\n")
+Corolla.DisplayCarDetails()
+Yaris.DisplayCarDetails()
+Rav4.DisplayCarDetails()
+LandCruiser.DisplayCarDetails()
+Prado.DisplayCarDetails()
+print("--------------\n\n")
+
+
+h = 0
+b = 0
+o = 0
+for i in range (1,6):
+    match i:
+        case 1:
+            x = Corolla.GetPurchasePrice()
+            name = 'Corolla'
+            y = Corolla.GetEngineSize()
+            bname = 'Corolla'
+            o += Corolla.GetPurchasePrice()
+        case 2:
+            x = Yaris.GetPurchasePrice()
+            name = 'Yaris'
+            y = Yaris.GetEngineSize()
+            bname = 'Yaris'
+            o += Yaris.GetPurchasePrice()
+        case 3:
+            x = Rav4.GetPurchasePrice()
+            name = 'Rav4'
+            y = Rav4.GetEngineSize()
+            bname = 'Rav4'
+            o += Rav4.GetPurchasePrice()
+        case 4:
+            x = LandCruiser.GetPurchasePrice()
+            name = 'LandCruiser'
+            y = LandCruiser.GetEngineSize()
+            bname = 'LandCruiser'
+            o += LandCruiser.GetPurchasePrice()
+        case 5:
+            x = Prado.GetPurchasePrice()
+            name = 'Prado'
+            y = Prado.GetEngineSize()
+            bname = 'Prado'
+            o += Prado.GetPurchasePrice()
+    if(x > h):
+        h = x
+        hn = name
+    if(y > b):
+        b = y
+        bn = bname
+
+print('The most expensive car is',hn,', and it costs ',h,'\n')
+print('The car with the biggest engine is',bn,', with an engine size of ',b,'\n')
+print('Average car price is ',o/5,'\n')
+print("\n--------------\n\n")
