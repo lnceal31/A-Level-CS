@@ -1,20 +1,62 @@
-data = []
+class Car:
+    def _init_(self,n,e):              #Constructor
+        self.__VehicleID = n
+        self.__Registration = ''
+        self.__DateOfRegistration = None
+        self.__EngineSize = e
+        self.__PurchasePrice = 0.00
 
-num_to_enter = int(input("How many people would you like to enter? "))
+    def SetPurchasePrice(self, p):
+        self.__PurchasePrice = p
 
-print("--- Enter Data ---")
-for i in range(num_to_enter):
-    name = input("Enter name for person " + str(i+1) + ": ")
-    age = input("Enter age for person " + str(i+1) + ": ")
+    def SetRegistration(self, r):
+        self.__Registration = r
+
+    def SetDateOfRegistration(self, d):
+        self.__DateOfRegistration = d
+
+    def GetVehicleID(self):
+        return(self.__VehicleID)
+
+    def GetRegistration(self):
+        return(self.__Registration)
+
+    def GetDateOfRegistration(self):
+        return(self.__DateOfRegistration)
+
+    def GetEngineSize(self):
+        return(self.__EngineSize)
+
+    def GetPurchasePrice(self):
+        return(self.__PurchasePrice)
     
+    def DisplayCarDetails(self):
+        print('ID: ',self._VehicleID,'\n','Registration Number: ',self.Registration,'\n','Date Of Registration: ',self.DateOfRegistration,'\n','Engine Size: ',self.EngineSize,'\n','Purchase Price: ',self._PurchasePrice,'\n','\n')
 
+CarJobs = []
 
-    data.append([name, age])
+for i in range(3):
+    c1 = input('Enter Vehicle ID: ')
+    c2 = int(input('Enter Engine Size: '))
+    CarJobs.append(Car(c1, c2))
 
-print("\n--- Stored Data ---")
-for person in data:
-    print("Name:", person[0], ", Age:", person[1])
+for i in range(len(CarJobs)):
+    print('Enter Purchase Price for',CarJobs[i].GetVehicleID(),':')
+    Price = int(input())
+    CarJobs[i].SetPurchasePrice(Price)
+    print('Enter Registration Number for',CarJobs[i].GetVehicleID(),':')
+    RegNum = int(input())
+    CarJobs[i].SetRegistration(RegNum)
+    print('Enter Date of Registration for',CarJobs[i].GetVehicleID(),':')
+    RegDate = input()
+    CarJobs[i].SetDateOfRegistration(RegDate)
 
-matrix = [[0]*3 for i in range(3)]
-print(matrix)
-
+DisplayCar = input('Enter Vehicle ID of car whose details you want to view: ')
+for i in range(len(CarJobs)):
+    if(CarJobs[i].GetVehicleID() == DisplayCar):
+        print('Vehicle ID: ', CarJobs[i].GetVehicleID())
+        print('Engine Size: ', CarJobs[i].GetEngineSize())
+        print('Purchase Price: ', CarJobs[i].GetPurchasePrice())
+        print('Registration Number: ', CarJobs[i].GetRegistration())
+        print('Date of Registration: ', CarJobs[i].GetDateOfRegistration())
+        #CarJobs[i].DisplayCarDetails()
