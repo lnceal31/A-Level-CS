@@ -1,0 +1,20 @@
+data = []
+
+num_to_enter = int(input("How many people would you like to enter? "))
+
+print("--- Enter Data ---")
+for i in range(num_to_enter):
+    name = input("Enter name for person " + str(i+1) + ": ")
+    age = input("Enter age for person " + str(i+1) + ": ")
+    
+
+
+    data.append([name, age])
+
+print("\n--- Stored Data ---")
+for person in data:
+    print("Name:", person[0], ", Age:", person[1])
+
+matrix = [[0]*3 for i in range(3)]
+print(matrix)
+
