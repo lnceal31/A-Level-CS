@@ -1,37 +1,99 @@
 import datetime
+
 class LibraryItem:
     def __init__(self, t, a, i):
         self.__Title = t
-        self.__Author__Artist = a
+        self.__Author_Artist = a  # fixed double underscore name
         self.__ItemID = i
         self.__OnLoan = False
         self.__DueDate = datetime.date.today()
+
     def GetTitle(self):
-        return(self.__Title)
+        return self.__Title
+
+    def GetLoan(self):  # added missing method
+        return self.__OnLoan
+
     def Borrowing(self):
         self.__OnLoan = True
-        self.__DueDate = self.__DueDate + datetime.timedelta(weeks-3)
+        self.__DueDate = datetime.date.today() + datetime.timedelta(weeks=3)  # fixed syntax
+
     def Returning(self):
         self.__OnLoan = False
+
     def PrintDetails(self):
-        print(self.__Title,',',self.__Author__Artist,',')
-        print(self.__ItemID,',',self.__OnLoan,',',self.__DueDate)
+        print(self.__Title, ',', self.__Author_Artist, ',')
+        print(self.__ItemID, ',', self.__OnLoan, ',', self.__DueDate)
+
 
 class Book(LibraryItem):
     def __init__(self, t, a, i):
         LibraryItem.__init__(self, t, a, i)
         self.__IsRequested = False
-        self.__RequestedBy = 0
+
     def GetisRequested(self):
-        return(self.__IsRequested)
+        return self.__IsRequested
+
     def SetLiRequested(self):
         self.__IsRequested = True
+
+    def PrintDetails(self):  # moved this inside the class
+        print("Book Details")
+        LibraryItem.PrintDetails(self)
+        print(self.__IsRequested)
+
 
 class CD(LibraryItem):
     def __init__(self, t, a, i):
         LibraryItem.__init__(self, t, a, i)
-        self.__Genre = "
+        self.__Genre = ''
+
     def GetGenre(self):
-        return(self.__Genre)
+        return self.__Genre
+
     def SetGenre(self, g):
         self.__Genre = g
+
+    def PrintDetails(self):  # optional, in case you want CD-specific print
+        print("CD Details")
+        LibraryItem.PrintDetails(self)
+        print(self.__Genre)
+
+
+Books = []
+CDs = []
+
+for i in range(1):
+    t = str(input("Input Book Title: "))
+    a = str(input("Input Book Author: "))
+    i = str(input("Input Book ID: "))
+    Books.append(Book(t, a, i))
+
+borrowbook = int(input("Input book to borrow: "))
+Books[borrowbook].Borrowing()
+
+for i in range(1):
+    t = str(input("Input CD Title: "))
+    a = str(input("Input CD Artist: "))
+    i = str(input("Input CD ID: "))
+    CDs.append(CD(t, a, i))
+
+borrowcd = int(input("Input CD to borrow: "))
+CDs[borrowcd].Borrowing()
+
+print("Books available for loan: ")
+for i in range(len(Books)):
+    if not Books[i].GetLoan():
+        Books[i].PrintDetails()
+
+print("CDs available for loan: ")
+for i in range(len(CDs)):
+    if not CDs[i].GetLoan():
+        CDs[i].PrintDetails()
+
+RequestBook = int(input("Request which book to borrow: "))
+Books[RequestBook].SetLiRequested()
+Books[RequestBook].PrintDetails()
+
+
+
