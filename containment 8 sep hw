@@ -1,0 +1,60 @@
+
+class Course:
+    def __init__(self, t, m):
+        self.__CourseTitle = t
+        self.__MaxStudents = m
+        self.__NumberOfLessons = 0
+        self.__CourseLesson = []           #empty list
+        self.__CourseAssessment = False    # will hold an asssesment object
+
+    def AddLesson(self, t, d, r):
+        self.__NumberOfLessons += 1
+        self.__CourseLesson.append(Lesson(t, d, r))
+        
+    def AddAssessment(self, t, m):
+        self.__CourseAssessment = Assessment(t, m)
+
+    def OutputCourseDetails(self):
+        print("Course:", self.__CourseTitle, "Maximum number:", self.__MaxStudents)
+        print("\nLessons:")
+        for i in self.__CourseLesson:
+            print(" -", i.OutputLessonDetails())
+        if self.__CourseAssessment:
+            print("\nAssessment:")
+            print(" -", self.__CourseAssessment.OutputAssessmentDetails())
+
+
+class Lesson:
+    def __init__(self, t, d, r):
+        self.__title = t
+        self.__duration = d
+        self.__requires_lab = r
+
+    def OutputLessonDetails(self):
+        if self.__requires_lab:
+            lab_status = "Lab required"
+        else:
+            lab_status = "No lab"
+        return f"Lesson: {self.__title}, Duration: {self.__duration} mins, {lab_status}"
+
+
+class Assessment:
+    def __init__(self, t, m):
+        self.__title = t
+        self.__max_marks = m
+
+    def OutputAssessmentDetails(self):
+        return f"Assessment: {self.__title}, Max Marks: {self.__max_marks}"
+
+
+# ------------------ MAIN PROGRAM ------------------
+
+c1 = Course("A Level Computer Science", 30)
+
+c1.AddLesson("Python OOP Basics", 60, True)     
+c1.AddLesson("Recursion", 50, False)            
+c1.AddLesson("Abstract Data Types", 70, True)
+
+c1.AddAssessment("Unit Test 1", 50)
+
+c1.OutputCourseDetails()
