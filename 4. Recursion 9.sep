@@ -1,13 +1,30 @@
 '''
 def factorial(n):
-    result= 1
-    for i in range(1,n+1):
-        result = result*i
-        
+    if n == 0:
+        return 1
+    else:
+        return n * factorial(n-1)
     print(result)
 
+
 n = int(input("Enter number: "))
-factorial(n)
+print(f"The factorial of {n} is {factorial(n)}")
+
 '''
 
-def CountDownFrom(n):
+def countdownfrom(n):
+    print(n)
+    if n > 0:
+        countdownfrom(n-1)
+
+n = int(input("Enter number: "))
+countdownfrom(n)
+
+def countupto(n):
+    if n > 0:
+        countupto(n-1)
+    print(n)
+
+n = int(input("Enter number: "))
+countupto(n)
+'''
