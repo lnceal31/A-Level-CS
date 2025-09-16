@@ -1,0 +1,14 @@
+'''
+try:
+    a=20/0
+    print (a)
+except:
+        print("You cant divide by zero!!!!!!!")
+'''
+
+NumberString = input("Enter an integer: ")
+try:
+    n = int(NumberString)
+    print(n)
+except:
+    print("This was not an integer")
