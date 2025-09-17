@@ -1,0 +1,54 @@
+'''
+FileHandle = open("samplefile.txt.", "w")
+name = input("Enter your name in full: ")
+FileHandle.write(name)
+FileHandle.write("\n")
+FileHandle.write((input("Enter your age: ")))
+FileHandle.write("\n")
+FileHandle.write((input("Enter your school name: ")))
+
+nameparts = name.strip().split("_")
+FileHandle.write(str(nameparts[1]))
+
+for line in file:
+    parts = line.strip().sploy
+FileHandle.close()
+'''
+
+print("\n MENU \n")
+
+print("1. Reading Books")
+print("2. Play Computer Games")
+print("3. Sport")
+print("4. Programming")
+print("5. Watching TV")
+
+print("\n ----------------------- \n")
+
+while True:
+    choice = int(input("Enter a choice number (1-5) and 0 to exit: "))
+    match choice:
+    case 0:
+        "Try Again"
+        break
+    case 1:
+        hobby = "Reading Books"
+        tally1 += 1
+    case 2:
+        hobby = "Play Computer Games"
+        tally2 += 1
+    case 3:
+        hobby = "Sport"
+        tally3 += 1
+    case 4:
+        hobby = "Programming"
+        tally4 += 1
+    case 5:
+        hobby = "Watching TV"
+        tally5 += 1
+
+
+
+
+File = open("hobbies.txt",'w')
+
