@@ -16,7 +16,6 @@ FileHandle.close()
 '''
 
 print("\n MENU \n")
-
 print("1. Reading Books")
 print("2. Play Computer Games")
 print("3. Sport")
@@ -25,30 +24,28 @@ print("5. Watching TV")
 
 print("\n ----------------------- \n")
 
+tally = [0, 0, 0, 0, 0]
+
+
+hobbies = ["Reading Books", "Play Computer Games", "Sport", "Programming", "Watching TV"]
+
 while True:
     choice = int(input("Enter a choice number (1-5) and 0 to exit: "))
-    match choice:
-    case 0:
-        "Try Again"
+    
+    if choice == 0:
+        print("Exiting...")
         break
-    case 1:
-        hobby = "Reading Books"
-        tally1 += 1
-    case 2:
-        hobby = "Play Computer Games"
-        tally2 += 1
-    case 3:
-        hobby = "Sport"
-        tally3 += 1
-    case 4:
-        hobby = "Programming"
-        tally4 += 1
-    case 5:
-        hobby = "Watching TV"
-        tally5 += 1
+    elif 1 <= choice <= 5:
+        tally[choice - 1] += 1
+    else:
+        print("Invalid choice, please try again.")
 
+file = open("hobbies.txt" , 'w' )
 
+for i in range(len(hobbies)):
+        line = f" The Hobby {hobbies[i]}, has {tally[i]} people \n"
+        file.write(line)
 
+print("Tally saved to 'hobbies.txt'.")
 
-File = open("hobbies.txt",'w')
-
+file.close()
