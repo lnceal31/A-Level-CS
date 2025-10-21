@@ -1,0 +1,21 @@
+def BinarySearch(low, high):
+    if low > high:
+        return -1  # Not found
+    middle = (low + high) // 2
+    if SearchData[middle] == SearchItem:
+        return middle
+    elif SearchData[middle] < SearchItem:
+        return BinarySearch(middle + 1, high)
+    else:
+        return BinarySearch(low, middle - 1)
+
+SearchData = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 
+              11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+
+SearchItem = int(input("Enter search item: "))
+result = BinarySearch(0, len(SearchData) - 1)
+
+if result != -1:
+    print(f"Item found at index {result}")
+else:
+    print("Item not found.")
