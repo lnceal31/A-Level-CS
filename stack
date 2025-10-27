@@ -1,0 +1,32 @@
+NULLPOINTER = -1
+
+class Node:
+    def _init_(self):
+        self.data = " "
+        self.pointer = NULLPOINTER
+
+def Initialisation(self):
+    Stack = [StackNode() for i in range(8)]
+    SP = NULLPOINTER
+    FLP = 0
+    for i in range(7):
+        Stack[index].pointer = index+1
+        print("[",Index,"]",Stack[index].data," ", Stack[index].pointer)
+        Stack[7].pointer = NULLPOINTER
+        print("[",7,"]", Stack[7].data," ", Stack[7].pointer)
+return(Stack, SP, FLP)
+
+def push(self, TopOfStack, FP, NewItem):
+    if TopOfStack < 7:
+        TopOfStack += 1
+        Stack[TopOfStack] = NewItem
+
+
+def pop():
+    value = ""
+    if TopOfStack > NULLPOINTER:
+        value =Stack[TopOfStack]
+        TopOfStack = TopOfStack-1
+
+return value
+
