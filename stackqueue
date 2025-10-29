@@ -1,0 +1,157 @@
+
+EMPTYSTRING = "-"
+NULLPOINTER = -1
+
+#Stack setup
+MaxStack = 8
+stack = [EMPTYSTRING for i in range(MaxStack)]
+TOS = NULLPOINTER  # Top of Stack pointer
+
+#Queue setup
+MaxQueue = 8
+queue = [EMPTYSTRING for i in range(MaxQueue)]
+frontp = NULLPOINTER
+rearp = NULLPOINTER
+noQueue = 0
+
+
+# -------------------- STACK -------------------- #
+
+def initialiseStack():
+    global TOS, stack
+    TOS = NULLPOINTER
+    for i in range(MaxStack):
+        stack[i] = EMPTYSTRING
+    print("Stack initialised.")
+
+
+def push(item):
+    global TOS
+    if TOS < MaxStack - 1:
+        TOS += 1
+        stack[TOS] = item
+        print(f"Pushed '{item}' to stack.")
+    else:
+        print("Stack overflow!")
+
+
+def pop():
+    global TOS
+    if TOS > NULLPOINTER:
+        item = stack[TOS]
+        stack[TOS] = EMPTYSTRING
+        TOS -= 1
+        print(f"Popped '{item}' from stack.")
+        return item
+    else:
+        print("Stack underflow")
+        return EMPTYSTRING
+
+
+# -------------------- QUEUE -------------------- #
+
+def initialiseQueue():
+    global frontp, rearp, noQueue, queue
+    frontp = NULLPOINTER
+    rearp = NULLPOINTER
+    noQueue = 0
+    for i in range(MaxQueue):
+        queue[i] = EMPTYSTRING
+    print("Queue initialised.")
+
+
+def enqueue(newitem):
+    global rearp, frontp, noQueue
+    if noQueue < MaxQueue:
+        if noQueue == 0:
+            frontp = 0
+            rearp = 0
+        else:
+            rearp = (rearp + 1) % MaxQueue
+        queue[rearp] = newitem
+        noQueue += 1
+        print(f"Enqueued '{newitem}'.")
+    else:
+        print("Queue overflow!")
+
+
+def dequeue():
+    global frontp, rearp, noQueue
+    if noQueue > 0:
+        item = queue[frontp]
+        queue[frontp] = EMPTYSTRING
+        noQueue -= 1
+        if noQueue == 0:
+            initialiseQueue()
+        else:
+            frontp = (frontp + 1) % MaxQueue
+        print(f"Dequeued '{item}'.")
+        return item
+    else:
+        print("Queue underflow!")
+        return EMPTYSTRING
+
+
+# -------------------- MAIN PROGRAM -------------------- #
+
+def main():
+    while True:
+        print("\n1. Stack Operations")
+        print("2. Queue Operations")
+        print("3. Exit")
+
+        opt = input("Enter Option: ")
+
+        if opt == "1":
+            print("\n--- Stack Menu ---")
+            print("1. Push")
+            print("2. Pop")
+            print("3. Initialise Stack")
+            print("4. Show Stack")
+            print("5. Back")
+
+            option = input("Enter Option: ")
+
+            if option == "1":
+                item = input("Enter value to push: ")
+                push(item)
+            elif option == "2":
+                pop()
+            elif option == "3":
+                initialiseStack()
+            elif option == "4":
+                print(stack)
+            elif option == "5":
+                continue
+
+        elif opt == "2":
+            print("\n--- Queue Menu ---")
+            print("1. Enqueue")
+            print("2. Dequeue")
+            print("3. Initialise Queue")
+            print("4. Show Queue")
+            print("5. Back")
+
+            option = input("Enter Option: ")
+
+            if option == "1":
+                item = input("Enter value to enqueue: ")
+                enqueue(item)
+            elif option == "2":
+                dequeue()
+            elif option == "3":
+                initialiseQueue()
+            elif option == "4":
+                print(queue)
+            elif option == "5":
+                continue
+
+        elif opt == "3":
+            print("Exiting program.")
+            break
+        else:
+            print("Invalid option, try again.")
+
+
+
+main()
