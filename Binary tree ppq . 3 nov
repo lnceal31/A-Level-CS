@@ -1,7 +1,6 @@
-
 # a) -------------------------------
 
-ArrayNodes=[[0 for X in range(3)] for Y in range(20)]
+ArrayNodes=[[0 for i in range(3)] for j in range(20)]     # create a 2D array with 20 rows and 3 columns filled with 0s
 RootPointer = -1
 FreeNode = 0 
 
@@ -10,39 +9,42 @@ FreeNode = 0
 
 def AddNode(ArrayNodes, RootPointer, FreeNode):
     NodeData = int(input("Enter the Data: "))
-    if FreeNode <= 19:
-        ArrayNodes[FreeNode][0] = -1
-        ArrayNodes[FreeNode][1] = NodeData
-        ArrayNodes[FreeNode][2] = -1
+    if FreeNode <= 19:                               # check if there is space in the tree
+        ArrayNodes[FreeNode][0] = -1             
+        ArrayNodes[FreeNode][1] = NodeData          # add data to the node
+        ArrayNodes[FreeNode][2] = -1                # left and right pointers set to -1
 
-        if RootPointer == -1:
-            RootPointer = 0
-        else:
-            Placed = False
-            CurrentNode = RootPointer
-            while Placed == False:
-                if NodeData < ArrayNodes[CurrentNode][1]:
-                    if ArrayNodes[CurrentNode][0] == -1:
-                        ArrayNodes[CurrentNode][0] = FreeNode
-                        Placed = True
+        if RootPointer == -1:                       # if tree is empty,
+            RootPointer = 0                         # first node added becomes the root
+        else:  #if not empty,
+            Placed = False                       # flag to check if node has been placed
+            CurrentNode = RootPointer            # start at the root   
+            while Placed == False:               # loop until the node is placed                          # Loop keeps going until the node is placed
+
+                if NodeData < ArrayNodes[CurrentNode][1]:          # go to left subtree
+                    if ArrayNodes[CurrentNode][0] == -1:           # if left pointer is -1, 
+                        ArrayNodes[CurrentNode][0] = FreeNode      # place the new node here  (When an empty slot (-1) is found, the new node is linked there)
+                        Placed = True                              # set flag to true to exit loop
                     else:
-                        CurrentNode = ArrayNodes[CurrentNode][0]
+                        CurrentNode = ArrayNodes[CurrentNode][0]       # move to the left child, keep going left
                 else:
-                    if ArrayNodes[CurrentNode][2] == -1:
-                        ArrayNodes[CurrentNode][2] = FreeNode
-                        Placed = True
+                    if ArrayNodes[CurrentNode][2] == -1:              # if right pointer is -1, 
+                        ArrayNodes[CurrentNode][2] = FreeNode         # place the new node here   (When an empty slot (-1) is found, the new node is linked there)
+                        Placed = True                                 # set flag to true to exit loop
                     else:
-                        CurrentNode = ArrayNodes[CurrentNode][2]
+                        CurrentNode = ArrayNodes[CurrentNode][2]      # if not, move to the right child, keep going right
 
-        FreeNode = FreeNode + 1
+        FreeNode = FreeNode + 1                # increment FreeNode to point to the next free position
     else:
         print("Tree is full")
 
-    return ArrayNodes, RootPointer, FreeNode
+    return ArrayNodes, RootPointer, FreeNode           # return updated tree structure, root pointer, and free node index
 
 
 
  # c) -------------------------------
+
+ # Prints the whole array of nodes
 
 def PrintAll(ArrayNodes):
     for i in range(0, 20):
@@ -51,19 +53,56 @@ def PrintAll(ArrayNodes):
 
  # d) -------------------------------
 
+# Add 10 nodes to the tree
 
 for i in range(0,10):
-    ArrayNodes, RootPointer, FreeNode = AddNode(ArrayNodes,RootPointer,FreeNode)
+    ArrayNodes, RootPointer, FreeNode = AddNode(ArrayNodes,RootPointer,FreeNode)    # Call the AddNode function to add a new node, updating the tree structure each time
 PrintAll(ArrayNodes) 
 
 
 # e) -------------------------------
 
-def InOrder(ArrayNodes, RootNode):
-    if ArrayNodes[RootNode][0] != -1:
-         InOrder(ArrayNodes, ArrayNodes[RootNode][0])
-         print(str(ArrayNodes[RootNode][1]))
-    if ArrayNodes[RootNode][2] != -1:
-         InOrder(ArrayNodes, ArrayNodes[RootNode][2])
 
+# IN-ORDER TRAVERSAL: Traverse and print the tree in ascending order
+
+
+def InOrder(ArrayNodes, RootNode):
+    if ArrayNodes[RootNode][0] != -1:                    # if there is a left child,
+        InOrder(ArrayNodes, ArrayNodes[RootNode][0])     # recursively visit left subtree
+    print(str(ArrayNodes[RootNode][1]))                  # output the data of the current node        
+
+    if ArrayNodes[RootNode][2] != -1:                    # if there is a right child,
+        InOrder(ArrayNodes, ArrayNodes[RootNode][2])     # recursively visit right subtree
+
+print("\nIn Order Traversal:")
 InOrder(ArrayNodes, RootPointer)
+
+
+
+# PRE ORDER TRAVERSAL: Traverse and print the tree in pre-order
+
+def PreOrder(ArrayNodes, RootNode):
+    if RootNode != -1:                                     # if node exits (BASE CASE)
+        print(str(ArrayNodes[RootNode][1]))                # output the data of the current node
+
+        if ArrayNodes[RootNode][0] != -1:                   # if there is a left child,
+            PreOrder(ArrayNodes, ArrayNodes[RootNode][0])   # recursively visit left subtree
+
+        if ArrayNodes[RootNode][2] != -1:                   # if there is a right child,
+            PreOrder(ArrayNodes, ArrayNodes[RootNode][2])   # recursively visit right subtree
+
+print("\nPre Order Traversal:")
+PreOrder(ArrayNodes, RootPointer)
+
+# POST ORDER TRAVERSAL: Traverse and print the tree in post-order
+
+def PostOrder(ArrayNodes, RootNode):
+    if RootNode != -1:                                     # if node exists (BASE CASE)
+        if ArrayNodes[RootNode][0] != -1:                  # Traverse left
+            PostOrder(ArrayNodes, ArrayNodes[RootNode][0])
+        if ArrayNodes[RootNode][2] != -1:                  # Traverse right
+            PostOrder(ArrayNodes, ArrayNodes[RootNode][2])
+        print(str(ArrayNodes[RootNode][1]))                # Visit root, output data of current node
+
+print("\nPost Order Traversal:")
+PostOrder(ArrayNodes, RootPointer)
