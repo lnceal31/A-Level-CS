@@ -42,4 +42,42 @@ IsFound(8)
 IsFound(9)
 
 
+class HiddenBox():
 
+    # __BoxName String
+    # __Creator String
+    # __DateHidden String
+    # __GameLocation String
+    # __LastFinds [10][2] String
+    # __Active String
+    
+    def __init__(self, BoxName, Creator, DateHidden, GameLocation):
+        self.__BoxName = BoxName    # String
+        self.__Creator = Creator    # String
+        self.__DateHidden = DateHidden  # Date
+        self.__GameLocation = GameLocation  # String
+        self.__LastFinds = [(" ") for i in range(1,10)]
+        self.__Active = False     # String
+
+    def GetBoxName(self):
+        return self.__BoxName
+
+    def GetGameLocation(self):
+        return self.__GameLocation
+
+
+def main():
+    TheBoxes = []
+    for i in range(0,len(TheBoxes)):
+        TheBoxes = [HiddenBox(" "," "," "," ") for i in range(10000)]
+    NewBox[TheBoxes,0]
+
+def NewBox(TheBoxes,NumBoxes):
+
+    Name = input("Enter box name: "))
+    Creator = input("Enter box creator: "))
+    DateHidden = input("Enter the date the box was hidden: ")
+    GameLocation = input("Enter the game location of the box: ")
+    
+    TheBoxes[NumBoxes] = HiddenBox(Name,Creator,DateHidden,GameLocation)
+    NumBoxes += 1
